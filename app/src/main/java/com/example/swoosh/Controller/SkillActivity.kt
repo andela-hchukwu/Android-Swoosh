@@ -19,6 +19,18 @@ class SkillActivity : BaseActivity() {
         player = intent.getParcelableExtra(EXTRA_PLAYER)
     }
 
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+        outState?.putParcelable(EXTRA_PLAYER, player)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if (savedInstanceState != null) {
+            player = savedInstanceState.getParcelable(EXTRA_PLAYER)
+        }
+    }
+
     fun onBallerClicked(view: View) {
         beginnerSkillBtn.isChecked = false
         player.skill = "Baller"
